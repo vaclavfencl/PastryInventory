@@ -1,2 +1,1 @@
-"# PastryInventory" 
-"# PastryInventory" 
+Frontend for PastryApp
