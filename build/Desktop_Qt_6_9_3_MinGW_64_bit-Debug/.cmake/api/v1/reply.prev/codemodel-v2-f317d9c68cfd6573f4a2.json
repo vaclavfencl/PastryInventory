@@ -1,0 +1,196 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-55e308e5a4a5785ecd68.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PastryInventory",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_aotstats-Debug-76b1c37019cc0a2950db.json",
+					"name" : "all_aotstats",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-e13b600cbd4b4ae09c9c.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-f16246793b50a203352f.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-af05c8f30947b26fecd2.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-7951a5e553316901805c.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory-Debug-715275be90d50be01002.json",
+					"name" : "appPastryInventory",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_autogen-Debug-00d77b6c31a45c15490f.json",
+					"name" : "appPastryInventory_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_autogen_timestamp_deps-Debug-45e1a3a52d7606dc82ed.json",
+					"name" : "appPastryInventory_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_copy_qml::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_copy_qml-Debug-22575d71e3eff33793e5.json",
+					"name" : "appPastryInventory_copy_qml",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_copy_res::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_copy_res-Debug-0aca2402469fe52684f4.json",
+					"name" : "appPastryInventory_copy_res",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_qmlimportscan-Debug-8155c776e07683f792fd.json",
+					"name" : "appPastryInventory_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_qmllint-Debug-4bce5e96ce5b7f942d0b.json",
+					"name" : "appPastryInventory_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_qmllint_json-Debug-0924853776bf3215ddc2.json",
+					"name" : "appPastryInventory_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_qmllint_module-Debug-88ff3eef200034d61d05.json",
+					"name" : "appPastryInventory_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPastryInventory_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPastryInventory_qmltyperegistration-Debug-544c9a18afdbe17de35c.json",
+					"name" : "appPastryInventory_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "module_appPastryInventory_aotstats_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-module_appPastryInventory_aotstats_target-Debug-a19492f10f10a1001240.json",
+					"name" : "module_appPastryInventory_aotstats_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/vis12/Desktop/Skola/MP/PastryInventory/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
+		"source" : "C:/Users/vis12/Desktop/Skola/MP/PastryInventory"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": false,
+                        "column": 25,
+                        "durationMicroseconds": 307,
+                        "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
+                        "functionName": "items",
+                        "line": 5
+                    }
+                ],
+                "filePath": "C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ItemListModel.qml"
+            }
+        ],
+        "moduleId": "PastryInventory(appPastryInventory)"
+    }
+]

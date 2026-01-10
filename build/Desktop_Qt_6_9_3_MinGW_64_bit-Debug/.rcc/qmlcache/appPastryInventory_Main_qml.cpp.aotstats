@@ -1,0 +1,44 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 22,
+                        "durationMicroseconds": 190,
+                        "errorMessage": "",
+                        "functionName": "initialItem",
+                        "line": 44
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 16
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 47,
+                        "errorMessage": "",
+                        "functionName": "footerBar",
+                        "line": 28
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 20,
+                        "durationMicroseconds": 47,
+                        "errorMessage": "",
+                        "functionName": "stackView",
+                        "line": 49
+                    }
+                ],
+                "filePath": "C:/Users/vis12/Desktop/Skola/MP/PastryInventory/Main.qml"
+            }
+        ],
+        "moduleId": "PastryInventory(appPastryInventory)"
+    }
+]

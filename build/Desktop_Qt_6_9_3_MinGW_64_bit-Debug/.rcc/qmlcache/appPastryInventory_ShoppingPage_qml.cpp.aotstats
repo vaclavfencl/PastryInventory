@@ -1,0 +1,620 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 176,
+                        "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
+                        "functionName": "allItems",
+                        "line": 17
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "_isBuyNow",
+                        "line": 26
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "_isBuyOnSale",
+                        "line": 32
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 454,
+                        "errorMessage": "Cannot load property length from (component in C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ShoppingPage.qml)::allItems with type QVariant.",
+                        "functionName": "_recalcBadges",
+                        "line": 44
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 3280,
+                        "errorMessage": "Cannot load property length from conversion to QVariant.",
+                        "functionName": "applyFilter",
+                        "line": 56
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 1267,
+                        "errorMessage": "Cannot generate efficient code for script lookup",
+                        "functionName": "reloadItems",
+                        "line": 80
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "onActiveFilterChanged",
+                        "line": 97
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 211,
+                        "errorMessage": "Cannot generate efficient code for script lookup",
+                        "functionName": "onCompleted",
+                        "line": 99
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 17,
+                        "durationMicroseconds": 100,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 114
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "y",
+                        "line": 124
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "",
+                        "functionName": "x",
+                        "line": 125
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 25,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 130
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 25,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 131
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 19,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "x",
+                        "line": 136
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 19,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "y",
+                        "line": 137
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 43,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 140
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 50,
+                        "errorMessage": "",
+                        "functionName": "fillMode",
+                        "line": 147
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 34,
+                        "durationMicroseconds": 49,
+                        "errorMessage": "",
+                        "functionName": "cursorShape",
+                        "line": 159
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: householdListPopup",
+                        "functionName": "onClicked",
+                        "line": 161
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 126,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 167
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 33,
+                        "durationMicroseconds": 103,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 168
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 33,
+                        "durationMicroseconds": 438,
+                        "errorMessage": "",
+                        "functionName": "onCanceled",
+                        "line": 169
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 69,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 158
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 88,
+                        "errorMessage": "Cannot find name activeHouseholdId",
+                        "functionName": "onHouseholdSelected",
+                        "line": 175
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 38,
+                        "durationMicroseconds": 48,
+                        "errorMessage": "",
+                        "functionName": "onHouseholdSelected",
+                        "line": 175
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "y",
+                        "line": 188
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 47,
+                        "errorMessage": "",
+                        "functionName": "x",
+                        "line": 189
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 33,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 194
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 21,
+                        "durationMicroseconds": 94,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 202
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 21,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 207
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 67,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 199
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "right",
+                        "line": 200
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 26,
+                        "durationMicroseconds": 54,
+                        "errorMessage": "",
+                        "functionName": "top",
+                        "line": 201
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "",
+                        "functionName": "topMargin",
+                        "line": 203
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "bottomMargin",
+                        "line": 204
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 33,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "leftMargin",
+                        "line": 205
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 34,
+                        "durationMicroseconds": 69,
+                        "errorMessage": "",
+                        "functionName": "rightMargin",
+                        "line": 206
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "horizontalCenter",
+                        "line": 212
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 85,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 213
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 242,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 217
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 29,
+                        "durationMicroseconds": 80,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 218
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 36,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "",
+                        "functionName": "onClicked",
+                        "line": 225
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 223
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 229
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 47,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 231
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 41,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 237
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 43,
+                        "durationMicroseconds": 45,
+                        "errorMessage": "Cannot access value for name buyNowCount",
+                        "functionName": "text",
+                        "line": 241
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 55,
+                        "durationMicroseconds": 38,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 240
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 243,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 251
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 29,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 252
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 36,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "onClicked",
+                        "line": 259
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 31,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 257
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 27,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 263
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 47,
+                        "durationMicroseconds": 29,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 265
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 41,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 271
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 43,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "Cannot access value for name buyOnSaleCount",
+                        "functionName": "text",
+                        "line": 275
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 55,
+                        "durationMicroseconds": 31,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 274
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 25,
+                        "durationMicroseconds": 112,
+                        "errorMessage": "",
+                        "functionName": "top",
+                        "line": 288
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 26,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 290
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 24,
+                        "durationMicroseconds": 43,
+                        "errorMessage": "",
+                        "functionName": "model",
+                        "line": 294
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 25,
+                        "errorMessage": "Cannot access value for name switchButtons",
+                        "functionName": "width",
+                        "line": 298
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 29,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 299
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 305
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 112,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 309
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 28,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 310
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 38,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 306
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 50,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "verticalCenter",
+                        "line": 308
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 27,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 318
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 321
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 45,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "leftMargin",
+                        "line": 322
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 49,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "verticalCenter",
+                        "line": 323
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 50,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 331
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 334
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 45,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "leftMargin",
+                        "line": 335
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 49,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "verticalCenter",
+                        "line": 336
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 48,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "onCompleted",
+                        "line": 338
+                    }
+                ],
+                "filePath": "C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ShoppingPage.qml"
+            }
+        ],
+        "moduleId": "PastryInventory(appPastryInventory)"
+    }
+]

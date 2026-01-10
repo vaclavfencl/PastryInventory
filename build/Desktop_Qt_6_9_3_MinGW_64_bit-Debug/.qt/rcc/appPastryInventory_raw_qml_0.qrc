@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="/qt/qml/PastryInventory/">
+    <file alias="Main.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/Main.qml</file>
+    <file alias="Footer.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/Footer.qml</file>
+    <file alias="HomePage.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/HomePage.qml</file>
+    <file alias="InventoryPage.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/InventoryPage.qml</file>
+    <file alias="ShoppingPage.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ShoppingPage.qml</file>
+    <file alias="SettingsPage.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/SettingsPage.qml</file>
+    <file alias="AddItemPopup.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/AddItemPopup.qml</file>
+    <file alias="Config.js">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/Config.js</file>
+    <file alias="ApiClient.js">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ApiClient.js</file>
+    <file alias="HouseholdList.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/HouseholdList.qml</file>
+    <file alias="ItemListModel.qml">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/ItemListModel.qml</file>
+    <file alias="icons/pie.ico">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/pie.ico</file>
+    <file alias="icons/homeButton.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/homeButton.png</file>
+    <file alias="icons/homeIcon.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/homeIcon.png</file>
+    <file alias="icons/inventoryButton.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/inventoryButton.png</file>
+    <file alias="icons/shoppingButton.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/shoppingButton.png</file>
+    <file alias="icons/settingsButton.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/settingsButton.png</file>
+    <file alias="icons/searchIcon.png">C:/Users/vis12/Desktop/Skola/MP/PastryInventory/icons/searchIcon.png</file>
+  </qresource>
+</RCC>
+

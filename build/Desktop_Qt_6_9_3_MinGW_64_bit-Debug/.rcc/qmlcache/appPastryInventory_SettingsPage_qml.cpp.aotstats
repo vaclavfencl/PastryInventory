@@ -1,0 +1,60 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 17,
+                        "durationMicroseconds": 442,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 180,
+                        "errorMessage": "",
+                        "functionName": "y",
+                        "line": 20
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 151,
+                        "errorMessage": "",
+                        "functionName": "x",
+                        "line": 21
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 111,
+                        "errorMessage": "",
+                        "functionName": "y",
+                        "line": 28
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "x",
+                        "line": 29
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 40
+                    }
+                ],
+                "filePath": "C:/Users/vis12/Desktop/Skola/MP/PastryInventory/SettingsPage.qml"
+            }
+        ],
+        "moduleId": "PastryInventory(appPastryInventory)"
+    }
+]
