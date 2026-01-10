@@ -8,17 +8,13 @@ Page {
     property var app
     property string activeHouseholdName: ""
     property string activeHouseholdId: ""
-
-    // category filtering
     property string selectedCategoryId: ""
     property var categoryButtonsModel: [{ id: "", name: "All Items" }]
 
-    // local, fast data (no per-item API calls)
-    property var allItems: []                // full list from API for current household
-    property var categoryNameById: ({})      // { "catId": "Fridge", ... }
+    property var allItems: []
+    property var categoryNameById: ({})
 
     function rebuildCategoryButtonsModel() {
-        // show only categories that are used by at least one item
         var used = {}
         for (var i = 0; i < allItems.length; i++) {
             var cid = allItems[i].categoryId
@@ -28,7 +24,6 @@ Page {
         var arr = [{ id: "", name: "All Items" }]
         var keys = Object.keys(categoryNameById)
 
-        // alphabetical by category name
         keys.sort(function (a, b) {
             var an = String(categoryNameById[a] || "").toLowerCase()
             var bn = String(categoryNameById[b] || "").toLowerCase()
@@ -44,7 +39,6 @@ Page {
 
         categoryButtonsModel = arr
 
-        // if selected category disappeared, reset to All Items
         if (selectedCategoryId !== "" && !arr.some(function (x) { return String(x.id) === String(selectedCategoryId) })) {
             selectedCategoryId = ""
         }
@@ -58,10 +52,8 @@ Page {
         for (var i = 0; i < allItems.length; i++) {
             var it = allItems[i]
 
-            // category filter
             if (cat !== "" && String(it.categoryId || "") !== cat) continue
 
-            // name search (local)
             if (q.length > 0) {
                 var name = String(it.name || "").toLowerCase()
                 if (name.indexOf(q) === -1) continue
@@ -70,7 +62,6 @@ Page {
             out.push(it)
         }
 
-        // stable A-Z
         out.sort(function (a, b) {
             var an = String(a.name || "").toLowerCase()
             var bn = String(b.name || "").toLowerCase()
@@ -111,7 +102,6 @@ Page {
         })
     }
 
-    // fast local updates (no reload needed)
     function bumpLocalCount(itemId, delta) {
         var did = false
         for (var i = 0; i < allItems.length; i++) {
@@ -219,7 +209,6 @@ Page {
                 }
             }
 
-            // ✅ NOT TOUCHED
             HouseholdList {
                 id: householdListPopup
                 onHouseholdSelected: (id, name) => {
@@ -289,7 +278,6 @@ Page {
             onTextChanged: searchDebounce.restart()
         }
 
-        // ✅ CATEGORY BAR: dynamic + clickable + horizontal scroll
         Flickable {
             id: categoryBar
             anchors.top: searchBar.bottom
@@ -339,7 +327,7 @@ Page {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 selectedCategoryId = String(modelData.id || "")
-                                applyLocalFilter() // instant
+                                applyLocalFilter()
                             }
                         }
                     }
@@ -386,7 +374,6 @@ Page {
                         anchors.margins: 12
                         spacing: 12
 
-                        // LEFT: name + category tag + EDIT
                         Item {
                             width: parent.width * 0.60
                             height: parent.height
@@ -472,7 +459,6 @@ Page {
                             }
                         }
 
-                        // Divider
                         Rectangle {
                             width: 1
                             height: parent.height * 0.62
@@ -480,7 +466,6 @@ Page {
                             color: "#EAEAEA"
                         }
 
-                        // MIDDLE: count circle + unit (click to edit / SET)
                         Column {
                             width: 58
                             anchors.verticalCenter: parent.verticalCenter
@@ -595,13 +580,11 @@ Page {
                             }
                         }
 
-                        // RIGHT: + / - stacked circles
                         Column {
                             width: 42
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: 8
 
-                            // +
                             Rectangle {
                                 width: 32
                                 height: 32
@@ -629,7 +612,6 @@ Page {
                                 }
                             }
 
-                            // -
                             Rectangle {
                                 width: 32
                                 height: 32
@@ -666,7 +648,6 @@ Page {
         }
     }
 
-    // Add Item button
     Rectangle{
         id: addButton
         anchors.right: parent.right

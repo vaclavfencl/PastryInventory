@@ -8,7 +8,6 @@ var _timeoutMs = 15000;
 function setBaseUrl(url) {
     if (!url) throw new Error("BaseUrl is required");
     _baseUrl = String(url).replace(/\/+$/, "");
-    // keep Config in sync (optional)
     Config.apiBase = _baseUrl;
 }
 
@@ -55,7 +54,7 @@ function _request(method, path, options) {
             var json = _parseJsonSafe(xhr.responseText);
 
             if (status >= 200 && status < 300) {
-                resolve(json); // 204 => null
+                resolve(json);
                 return;
             }
 
@@ -223,7 +222,6 @@ function updateItem(id, item) {
     _requireField({ id: id }, "id");
     var payload = _normalizeItemPayload(item);
 
-    // Must match UpdateItemDto (no householdId)
     var updatePayload = {
         categoryId: payload.categoryId,
         name: payload.name,
@@ -243,7 +241,6 @@ function deleteItem(id) {
     return _request("DELETE", "/api/items/" + encodeURIComponent(id));
 }
 
-// PATCH count: pass +incrementStep or -incrementStep (or any +/- int)
 function patchItemCount(id, stepIncrement) {
     _requireField({ id: id }, "id");
     if (stepIncrement === undefined || stepIncrement === null || Number(stepIncrement) === 0)
@@ -267,19 +264,16 @@ function decrementItemCount(item) {
 }
 
 
-// Export object
 var ApiClient = {
     setBaseUrl: setBaseUrl,
     getBaseUrl: getBaseUrl,
 
-    // households
     listHouseholds: listHouseholds,
     getHousehold: getHousehold,
     createHousehold: createHousehold,
     updateHousehold: updateHousehold,
     deleteHousehold: deleteHousehold,
 
-    // categories
     listCategories: listCategories,
     getCategory: getCategory,
     createCategory: createCategory,
@@ -287,7 +281,6 @@ var ApiClient = {
     deleteCategory: deleteCategory,
     getCategoryName: getCategoryName,
 
-    // items
     listItems: listItems,
     getItem: getItem,
     searchItems: searchItems,

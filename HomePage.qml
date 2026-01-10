@@ -7,15 +7,10 @@ import "ApiClient.js" as Api
 Page {
     id: homePage
     property var footerBar
-
-    // ✅ active household for this page (so AddItemPopup knows where to create item)
     property string activeHouseholdId: ""
-
-    // ✅ dynamic stats
     property int totalItemsCount: 0
     property int outOfStockCount: 0
 
-    // ✅ recent activity model
     ListModel { id: recentActivityModel }
 
     header: ToolBar{
@@ -97,19 +92,15 @@ Page {
             x: pageName.x
         }
     }
-
-    // ✅ pass householdId into popup
     AddItemPopup {
         id: addItemPopup
         householdId: activeHouseholdId
 
-        // refresh stats/activity after add/edit/delete
         onItemCreated: (_) => homePage.activeHouseholdIdChanged()
         onItemSaved: (_) => homePage.activeHouseholdIdChanged()
         onItemDeleted: (_) => homePage.activeHouseholdIdChanged()
     }
 
-    // ✅ initial load: pick first household
     Component.onCompleted: {
         Api.ApiClient.listHouseholds()
             .then(function (households) {
@@ -121,7 +112,6 @@ Page {
             })
     }
 
-    // ✅ whenever household changes, recompute Total / Out of Stock + recent activity
     onActiveHouseholdIdChanged: {
         if (!activeHouseholdId || activeHouseholdId.length === 0) return
 
@@ -129,10 +119,8 @@ Page {
             .then(function (items) {
                 items = items || []
 
-                // Total items (count of item rows)
                 totalItemsCount = items.length
 
-                // Out of stock: count < minCount (ignore null/undefined minCount)
                 var out = 0
                 for (var i = 0; i < items.length; i++) {
                     var it = items[i]
@@ -142,7 +130,6 @@ Page {
                 }
                 outOfStockCount = out
 
-                // Recent activity: sort by updatedAt desc (fallback createdAt)
                 var sorted = items.slice().sort(function (a, b) {
                     var ad = new Date(a.updatedAt || a.createdAt || 0).getTime()
                     var bd = new Date(b.updatedAt || b.createdAt || 0).getTime()
@@ -193,7 +180,6 @@ Page {
         }
         spacing: 16
 
-        // Boxes
         RowLayout{
             spacing: 15
             Layout.margins: 16
@@ -305,7 +291,6 @@ Page {
             }
         }
 
-        //Quick actions
         Label{
             id:quickActionsText
             Layout.leftMargin: parent.width*0.16
@@ -341,7 +326,6 @@ Page {
             }
         }
 
-        //Recent activity
         Label{
             id:recentActivityText
             Layout.leftMargin: parent.width*0.16
@@ -352,7 +336,6 @@ Page {
             font.pointSize: 16
         }
 
-        // ✅ Recent activity list (name + "•" + time ago)
         Column {
             anchors.top:recentActivityText.bottom
             anchors.topMargin: 8

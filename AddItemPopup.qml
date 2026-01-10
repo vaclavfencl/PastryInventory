@@ -14,14 +14,11 @@ Popup  {
     padding: 16
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    // Provided by page
     property string householdId: ""
 
-    // Edit support
     property bool editMode: false
     property var itemToEdit: null
 
-    // Notify page
     signal itemCreated(var createdItem)
     signal itemSaved(string householdId)
     signal itemDeleted(string householdId)
@@ -34,7 +31,6 @@ Popup  {
         radius: 12
     }
 
-    // Fill/reset fields when popup opens
     onOpened: {
         errorText = ""
         isSaving = false
@@ -47,19 +43,16 @@ Popup  {
             aMinInput.text = String(Math.max(0, Number(itemToEdit.minCount || 0)))
             saleInput.text = String(Math.max(0, Number(itemToEdit.saleCount || 0)))
 
-            // Category shown as NAME
             if (itemToEdit.categoryId) {
                 categoryInput.text = "..."
                 Api.ApiClient.getCategoryName(itemToEdit.categoryId)
                     .then(function (n) {
-                        // If category was deleted / missing, treat as empty
                         categoryInput.text = (n === "Uncategorized") ? "" : n
                     })
             } else {
                 categoryInput.text = ""
             }
         } else {
-            // Add mode defaults
             itemNameInput.text = ""
             categoryInput.text = ""
             unitInput.text = ""
@@ -262,7 +255,6 @@ Popup  {
             }
         }
 
-        // Split actions: Cancel/Delete (left) + Save/Add (right)
         Rectangle {
             Layout.fillWidth: true
             height: 40
@@ -272,13 +264,12 @@ Popup  {
 
             Row {
                 anchors.fill: parent
-                spacing: 1  // divider line
+                spacing: 1
 
-                // LEFT HALF: Cancel (add) or Delete (edit)
                 Rectangle {
                     width: (parent.width - parent.spacing) / 2
                     height: parent.height
-                    color: root.editMode ? "#FFE9E9" : "#F2F2F2"   // delete = light red, cancel = light gray
+                    color: root.editMode ? "#FFE9E9" : "#F2F2F2"
 
                     Label {
                         anchors.centerIn: parent
@@ -296,13 +287,11 @@ Popup  {
                         onClicked: {
                             root.errorText = ""
 
-                            // ADD mode: Cancel -> close popup
                             if (!root.editMode) {
                                 root.close()
                                 return
                             }
 
-                            // EDIT mode: Delete item
                             if (!root.itemToEdit || !root.itemToEdit.id) {
                                 root.errorText = "Missing item to delete."
                                 return
@@ -331,7 +320,6 @@ Popup  {
                     }
                 }
 
-                // RIGHT HALF: Save/Add
                 Rectangle {
                     width: (parent.width - parent.spacing) / 2
                     height: parent.height
@@ -378,7 +366,6 @@ Popup  {
 
                             root.isSaving = true
 
-                            // Resolve categoryId by NAME (find or create). Empty => null.
                             var catPromise = Promise.resolve(null)
                             if (categoryName.length > 0) {
                                 catPromise = Api.ApiClient.listCategories(hhId)
@@ -396,7 +383,6 @@ Popup  {
                             catPromise
                                 .then(function (catId) {
                                     if (!root.editMode) {
-                                        // CREATE
                                         return Api.ApiClient.createItem({
                                             householdId: hhId,
                                             categoryId: catId,
@@ -412,13 +398,12 @@ Popup  {
                                         })
                                     }
 
-                                    // UPDATE
                                     if (!root.itemToEdit || !root.itemToEdit.id) {
                                         throw new Error("Missing item to edit.")
                                     }
 
                                     return Api.ApiClient.updateItem(root.itemToEdit.id, {
-                                        householdId: hhId, // required by your ApiClient normalizer
+                                        householdId: hhId,
                                         categoryId: catId,
                                         name: name,
                                         count: count,
