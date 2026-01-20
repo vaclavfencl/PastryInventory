@@ -102,6 +102,21 @@ Page {
         })
     }
 
+    function applyLocalFilterPreserveScroll() {
+        var y = itemsList.contentY
+        var idx = itemsList.currentIndex
+
+        applyLocalFilter()
+
+        Qt.callLater(function () {
+            var maxY = Math.max(0, itemsList.contentHeight - itemsList.height)
+            itemsList.contentY = Math.max(0, Math.min(y, maxY))
+
+            if (idx >= 0 && idx < itemsList.count)
+                itemsList.currentIndex = idx
+        })
+    }
+
     function bumpLocalCount(itemId, delta) {
         var did = false
         for (var i = 0; i < allItems.length; i++) {
@@ -116,7 +131,7 @@ Page {
         if (did) {
             allItems = allItems.slice()
             rebuildCategoryButtonsModel()
-            applyLocalFilter()
+            applyLocalFilterPreserveScroll()
         }
     }
 
@@ -132,7 +147,7 @@ Page {
         if (did) {
             allItems = allItems.slice()
             rebuildCategoryButtonsModel()
-            applyLocalFilter()
+            applyLocalFilterPreserveScroll()
         }
     }
 
@@ -148,9 +163,9 @@ Page {
         loadHouseholdData()
     }
 
-    header: ToolBar{
+    header: ToolBar {
         id: headerToolBar
-        height: parent.height*0.2
+        height: parent.height * 0.2
         Material.background: "#16A249"
         Material.foreground: "white"
         Material.elevation: 6
@@ -160,20 +175,20 @@ Page {
             text: qsTr("Inventory")
             font.bold: true
             font.pointSize: 24
-            y: parent.height/4
-            x: parent.width/5
+            y: parent.height / 4
+            x: parent.width / 5
 
             Rectangle {
                 id: householdButton
                 width: 75
-                height: parent.height*0.8
+                height: parent.height * 0.8
                 radius: height / 2
                 color: "transparent"
                 border.width: 2
                 border.color: "white"
                 antialiasing: true
-                x: parent.width*1.2
-                y: parent.height*0.2
+                x: parent.width * 1.2
+                y: parent.height * 0.2
 
                 Row {
                     anchors.centerIn: parent
@@ -198,7 +213,7 @@ Page {
                     cursorShape: Qt.PointingHandCursor
 
                     onClicked: {
-                        householdListPopup.x = householdButton.x - householdListPopup.width*0.3
+                        householdListPopup.x = householdButton.x - householdListPopup.width * 0.3
                         householdListPopup.y = householdButton.y + householdButton.height + 10
                         householdListPopup.open()
                     }
@@ -245,17 +260,32 @@ Page {
         }
     }
 
+    ItemListModel { id: itemListModel }
+
+    Component.onCompleted: {
+        Api.ApiClient.listHouseholds()
+            .then(function (households) {
+                if (!households || households.length === 0) {
+                    console.error("Load failed: No households returned.")
+                    return
+                }
+                activeHouseholdId = households[0].id
+            })
+            .catch(function (err) {
+                console.error("Load failed:", err.message)
+            })
+    }
+
     ColumnLayout {
         anchors.fill: parent
+        spacing: 0
 
-        TextField{
+        TextField {
             id: searchBar
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: parent.height * 0.025
-            anchors.leftMargin: parent.width*0.2
-            anchors.rightMargin: parent.width*0.2
+            Layout.fillWidth: true
+            Layout.leftMargin: parent.width * 0.2
+            Layout.rightMargin: parent.width * 0.2
+            Layout.topMargin: parent.height * 0.025
 
             background: Rectangle {
                 radius: height / 2
@@ -280,20 +310,20 @@ Page {
 
         Flickable {
             id: categoryBar
-            anchors.top: searchBar.bottom
-            anchors.topMargin: 8
-            anchors.left: searchBar.left
-            width: searchBar.width
-            height: 32
-            clip: true
+            Layout.fillWidth: true
+            Layout.leftMargin: parent.width * 0.2
+            Layout.rightMargin: parent.width * 0.2
+            Layout.topMargin: 8
+            Layout.preferredHeight: 32
 
+            clip: true
             flickableDirection: Flickable.HorizontalFlick
             boundsBehavior: Flickable.StopAtBounds
 
             contentWidth: categoryRow.implicitWidth
             contentHeight: height
 
-            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOff }
 
             Row {
                 id: categoryRow
@@ -335,310 +365,300 @@ Page {
             }
         }
 
-        ItemListModel { id: itemListModel }
+        ListView {
+            id: itemsList
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.leftMargin: parent.width * 0.2
+            Layout.rightMargin: parent.width * 0.2
+            Layout.topMargin: 8
 
-        Component.onCompleted: {
-            Api.ApiClient.listHouseholds()
-                .then(function (households) {
-                    if (!households || households.length === 0) {
-                        console.error("Load failed: No households returned.")
-                        return
-                    }
-                    activeHouseholdId = households[0].id
-                })
-                .catch(function (err) {
-                    console.error("Load failed:", err.message)
-                })
-        }
-
-        Column {
-            anchors.top: categoryBar.bottom
-            anchors.topMargin: 8
-            anchors.left: categoryBar.left
+            clip: true
             spacing: 8
+            model: itemListModel.items
 
-            Repeater {
-                model: itemListModel.items
+            ScrollBar.vertical: ScrollBar { policy: ScrollBar.AlwaysOff }
 
-                delegate: Rectangle {
-                    width: searchBar.width
-                    height: 92
-                    radius: 16
-                    color: "white"
-                    border.width: 1
-                    border.color: "#E6E6E6"
-                    clip: true
+            footer: Item { width: 1; height: 90 }
 
-                    Row {
-                        anchors.fill: parent
-                        anchors.margins: 12
-                        spacing: 12
+            delegate: Rectangle {
+                width: ListView.view.width
+                height: 92
+                radius: 16
+                color: "white"
+                border.width: 1
+                border.color: "#E6E6E6"
+                clip: true
 
-                        Item {
-                            width: parent.width * 0.60
-                            height: parent.height
+                Row {
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    spacing: 12
 
-                            Column {
-                                anchors.left: parent.left
-                                anchors.verticalCenter: parent.verticalCenter
-                                spacing: 6
+                    Item {
+                        width: parent.width * 0.60
+                        height: parent.height
 
-                                Item {
-                                    width: parent.width
+                        Column {
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: 6
+
+                            Item {
+                                width: parent.width
+                                height: 20
+
+                                Text {
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 2
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: modelData.name || ""
+                                    font.pixelSize: 16
+                                    font.bold: true
+                                    color: "black"
+                                    elide: Text.ElideRight
+                                    clip: true
+                                    width: parent.width - 8
+                                }
+                            }
+
+                            Row {
+                                spacing: 8
+
+                                Rectangle {
+                                    id: categoryPill
                                     height: 20
+                                    radius: 10
+                                    color: "white"
+                                    border.width: 1
+                                    border.color: "#CFCFCF"
 
                                     Text {
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 2
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        text: modelData.name || ""
-                                        font.pixelSize: 16
+                                        id: categoryText
+                                        text: categoryNameById[String(modelData.categoryId)] || "Uncategorized"
+                                        anchors.centerIn: parent
+                                        font.pixelSize: 11
                                         font.bold: true
                                         color: "black"
-                                        elide: Text.ElideRight
-                                        clip: true
-                                        width: parent.width - 8
+                                        leftPadding: 8
+                                        rightPadding: 8
+                                    }
+
+                                    width: categoryText.paintedWidth + 16
+                                }
+
+                                Rectangle {
+                                    id: editCircle
+                                    height: 20
+                                    radius: 10
+                                    color: "#16A249"
+
+                                    Text {
+                                        id: editText
+                                        anchors.centerIn: parent
+                                        text: "EDIT"
+                                        font.pixelSize: 10
+                                        font.bold: true
+                                        color: "white"
+                                        leftPadding: 8
+                                        rightPadding: 8
+                                    }
+
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            addItemPopup.editMode = true
+                                            addItemPopup.itemToEdit = modelData
+                                            addItemPopup.open()
+                                        }
+                                    }
+
+                                    width: editText.paintedWidth + 16
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: 1
+                        height: parent.height * 0.62
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "#EAEAEA"
+                    }
+
+                    Column {
+                        width: 58
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 4
+
+                        Item {
+                            width: 38
+                            height: 38
+                            anchors.horizontalCenter: parent.horizontalCenter
+
+                            Rectangle {
+                                id: countCircle
+                                anchors.fill: parent
+                                radius: 19
+                                color: "transparent"
+                                border.width: 2
+                                border.color: "#D9D9D9"
+                                clip: true
+
+                                property bool editing: false
+                                property bool committing: false
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    visible: !countCircle.editing
+                                    text: modelData.count
+                                    font.pixelSize: 16
+                                    font.bold: true
+                                    color: "black"
+                                }
+
+                                TextField {
+                                    id: countInput
+                                    anchors.fill: parent
+                                    visible: countCircle.editing
+                                    text: String(modelData.count || 0)
+
+                                    background: Rectangle {
+                                        radius: 19
+                                        color: "white"
+                                        border.width: 0
+                                    }
+
+                                    font.pixelSize: 14
+                                    font.bold: true
+                                    color: "black"
+                                    horizontalAlignment: Text.AlignHCenter
+                                    inputMethodHints: Qt.ImhDigitsOnly
+                                    validator: IntValidator { bottom: 0; top: 9999 }
+
+                                    leftPadding: 0
+                                    rightPadding: 0
+                                    topPadding: 6
+                                    bottomPadding: 0
+
+                                    onAccepted: focus = false
+
+                                    onEditingFinished: {
+                                        if (!countCircle.editing || countCircle.committing) return
+                                        countCircle.committing = true
+
+                                        var hh = modelData.householdId || activeHouseholdId
+                                        var newCount = Math.min(9999, Math.max(0, parseInt(text, 10) || 0))
+                                        var oldCount = Math.max(0, Number(modelData.count || 0))
+
+                                        if (newCount === oldCount) {
+                                            countCircle.editing = false
+                                            countCircle.committing = false
+                                            return
+                                        }
+
+                                        Api.ApiClient.updateItem(modelData.id, {
+                                            householdId: hh,
+                                            categoryId: modelData.categoryId,
+                                            name: modelData.name,
+                                            count: newCount,
+                                            description: modelData.description,
+                                            unit: modelData.unit,
+                                            minCount: modelData.minCount,
+                                            saleCount: modelData.saleCount,
+                                            incrementStep: modelData.incrementStep
+                                        }).then(function () {
+                                            setLocalCount(modelData.id, newCount)
+                                        }).catch(function (err) {
+                                            console.error(err.message)
+                                        }).then(function () {
+                                            countCircle.editing = false
+                                            countCircle.committing = false
+                                        })
                                     }
                                 }
 
-                                Row {
-                                    spacing: 8
-
-                                    Rectangle {
-                                        id: categoryPill
-                                        height: 20
-                                        radius: 10
-                                        color: "white"
-                                        border.width: 1
-                                        border.color: "#CFCFCF"
-
-                                        Text {
-                                            id: categoryText
-                                            text: categoryNameById[String(modelData.categoryId)] || "Uncategorized"
-                                            anchors.centerIn: parent
-                                            font.pixelSize: 11
-                                            font.bold: true
-                                            color: "black"
-                                            leftPadding: 8
-                                            rightPadding: 8
-                                        }
-
-                                        width: categoryText.paintedWidth + 16
+                                MouseArea {
+                                    anchors.fill: parent
+                                    enabled: !countCircle.editing
+                                    cursorShape: Qt.IBeamCursor
+                                    onClicked: {
+                                        countCircle.editing = true
+                                        countInput.text = String(modelData.count || 0)
+                                        countInput.forceActiveFocus()
+                                        countInput.selectAll()
                                     }
+                                }
+                            }
+                        }
 
-                                    Rectangle {
-                                        id: editCircle
-                                        height: 20
-                                        radius: 10
-                                        color: "#16A249"
+                        Text {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: modelData.unit || "pcs"
+                            font.pixelSize: 10
+                            color: "#6B6B6B"
+                        }
+                    }
 
-                                        Text {
-                                            id: editText
-                                            anchors.centerIn: parent
-                                            text: "EDIT"
-                                            font.pixelSize: 10
-                                            font.bold: true
-                                            color: "white"
-                                            leftPadding: 8
-                                            rightPadding: 8
-                                        }
+                    Column {
+                        width: 42
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 8
 
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            cursorShape: Qt.PointingHandCursor
-                                            onClicked: {
-                                                addItemPopup.editMode = true
-                                                addItemPopup.itemToEdit = modelData
-                                                addItemPopup.open()
-                                            }
-                                        }
+                        Rectangle {
+                            width: 32
+                            height: 32
+                            radius: 16
+                            color: "#16A249"
+                            anchors.horizontalCenter: parent.horizontalCenter
 
-                                        width: editText.paintedWidth + 16
-                                    }
+                            Text { anchors.centerIn: parent; text: "+"; font.pixelSize: 16; color: "white" }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    var step = Math.max(1, Number(modelData.incrementStep || 1))
+                                    var current = Math.max(0, Number(modelData.count || 0))
+                                    if (current >= 9999) return
+
+                                    var delta = Math.min(step, 9999 - current)
+                                    if (delta <= 0) return
+
+                                    Api.ApiClient.patchItemCount(modelData.id, delta)
+                                        .then(function () { bumpLocalCount(modelData.id, delta) })
+                                        .catch(function (err) { console.error(err.message) })
                                 }
                             }
                         }
 
                         Rectangle {
-                            width: 1
-                            height: parent.height * 0.62
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "#EAEAEA"
-                        }
+                            width: 32
+                            height: 32
+                            radius: 16
+                            color: "#F2F2F2"
+                            border.width: 1
+                            border.color: "#D9D9D9"
+                            anchors.horizontalCenter: parent.horizontalCenter
 
-                        Column {
-                            width: 58
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: 4
+                            opacity: (Number(modelData.count || 0) <= 0) ? 0.4 : 1.0
 
-                            Item {
-                                width: 38
-                                height: 38
-                                anchors.horizontalCenter: parent.horizontalCenter
+                            Text { anchors.centerIn: parent; text: "−"; font.pixelSize: 16; color: "#333" }
 
-                                Rectangle {
-                                    id: countCircle
-                                    anchors.fill: parent
-                                    radius: 19
-                                    color: "transparent"
-                                    border.width: 2
-                                    border.color: "#D9D9D9"
-                                    clip: true
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                enabled: Number(modelData.count || 0) > 0
+                                onClicked: {
+                                    var step = Math.max(1, Number(modelData.incrementStep || 1))
+                                    var current = Math.max(0, Number(modelData.count || 0))
+                                    var delta = -Math.min(step, current)
+                                    if (delta === 0) return
 
-                                    property bool editing: false
-                                    property bool committing: false
-
-                                    Text {
-                                        anchors.centerIn: parent
-                                        visible: !countCircle.editing
-                                        text: modelData.count
-                                        font.pixelSize: 16
-                                        font.bold: true
-                                        color: "black"
-                                    }
-
-                                    TextField {
-                                        id: countInput
-                                        anchors.fill: parent
-                                        visible: countCircle.editing
-                                        text: String(modelData.count || 0)
-
-                                        background: Rectangle {
-                                            radius: 19
-                                            color: "white"
-                                            border.width: 0
-                                        }
-
-                                        font.pixelSize: 14
-                                        font.bold: true
-                                        color: "black"
-                                        horizontalAlignment: Text.AlignHCenter
-                                        inputMethodHints: Qt.ImhDigitsOnly
-                                        validator: IntValidator { bottom: 0; top: 9999 }
-
-                                        leftPadding: 0
-                                        rightPadding: 0
-                                        topPadding: 6
-                                        bottomPadding: 0
-
-                                        onAccepted: focus = false
-
-                                        onEditingFinished: {
-                                            if (!countCircle.editing || countCircle.committing) return
-                                            countCircle.committing = true
-
-                                            var hh = modelData.householdId || activeHouseholdId
-                                            var newCount = Math.min(9999, Math.max(0, parseInt(text, 10) || 0))
-                                            var oldCount = Math.max(0, Number(modelData.count || 0))
-
-                                            if (newCount === oldCount) {
-                                                countCircle.editing = false
-                                                countCircle.committing = false
-                                                return
-                                            }
-
-                                            Api.ApiClient.updateItem(modelData.id, {
-                                                householdId: hh,
-                                                categoryId: modelData.categoryId,
-                                                name: modelData.name,
-                                                count: newCount,
-                                                description: modelData.description,
-                                                unit: modelData.unit,
-                                                minCount: modelData.minCount,
-                                                saleCount: modelData.saleCount,
-                                                incrementStep: modelData.incrementStep
-                                            }).then(function () {
-                                                setLocalCount(modelData.id, newCount)
-                                            }).catch(function (err) {
-                                                console.error(err.message)
-                                            }).then(function () {
-                                                countCircle.editing = false
-                                                countCircle.committing = false
-                                            })
-                                        }
-                                    }
-
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        enabled: !countCircle.editing
-                                        cursorShape: Qt.IBeamCursor
-                                        onClicked: {
-                                            countCircle.editing = true
-                                            countInput.text = String(modelData.count || 0)
-                                            countInput.forceActiveFocus()
-                                            countInput.selectAll()
-                                        }
-                                    }
-                                }
-                            }
-
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.unit || "pcs"
-                                font.pixelSize: 10
-                                color: "#6B6B6B"
-                            }
-                        }
-
-                        Column {
-                            width: 42
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: 8
-
-                            Rectangle {
-                                width: 32
-                                height: 32
-                                radius: 16
-                                color: "#16A249"
-                                anchors.horizontalCenter: parent.horizontalCenter
-
-                                Text { anchors.centerIn: parent; text: "+"; font.pixelSize: 16; color: "white" }
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    cursorShape: Qt.PointingHandCursor
-                                    onClicked: {
-                                        var step = Math.max(1, Number(modelData.incrementStep || 1))
-                                        var current = Math.max(0, Number(modelData.count || 0))
-                                        if (current >= 9999) return
-
-                                        var delta = Math.min(step, 9999 - current)
-                                        if (delta <= 0) return
-
-                                        Api.ApiClient.patchItemCount(modelData.id, delta)
-                                            .then(function () { bumpLocalCount(modelData.id, delta) })
-                                            .catch(function (err) { console.error(err.message) })
-                                    }
-                                }
-                            }
-
-                            Rectangle {
-                                width: 32
-                                height: 32
-                                radius: 16
-                                color: "#F2F2F2"
-                                border.width: 1
-                                border.color: "#D9D9D9"
-                                anchors.horizontalCenter: parent.horizontalCenter
-
-                                opacity: (Number(modelData.count || 0) <= 0) ? 0.4 : 1.0
-
-                                Text { anchors.centerIn: parent; text: "−"; font.pixelSize: 16; color: "#333" }
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    cursorShape: Qt.PointingHandCursor
-                                    enabled: Number(modelData.count || 0) > 0
-                                    onClicked: {
-                                        var step = Math.max(1, Number(modelData.incrementStep || 1))
-                                        var current = Math.max(0, Number(modelData.count || 0))
-                                        var delta = -Math.min(step, current)
-                                        if (delta === 0) return
-
-                                        Api.ApiClient.patchItemCount(modelData.id, delta)
-                                            .then(function () { bumpLocalCount(modelData.id, delta) })
-                                            .catch(function (err) { console.error(err.message) })
-                                    }
+                                    Api.ApiClient.patchItemCount(modelData.id, delta)
+                                        .then(function () { bumpLocalCount(modelData.id, delta) })
+                                        .catch(function (err) { console.error(err.message) })
                                 }
                             }
                         }
@@ -648,7 +668,7 @@ Page {
         }
     }
 
-    Rectangle{
+    Rectangle {
         id: addButton
         anchors.right: parent.right
         anchors.rightMargin: 24
@@ -668,7 +688,7 @@ Page {
             color: "white"
         }
 
-        ToolButton{
+        ToolButton {
             anchors.fill: parent
             onClicked: {
                 addItemPopup.editMode = false

@@ -35,7 +35,6 @@ Page {
         return Number(it.count || 0) < Number(it.saleCount)
     }
 
-
     function _recalcBadges() {
         var b0 = 0
         var b1 = 0
@@ -276,61 +275,66 @@ Page {
             }
         }
 
-        Column {
-            anchors.top:switchButtons.bottom
+        ListView {
+            id: shoppingList
+            anchors.top: switchButtons.bottom
             anchors.topMargin: 8
-            anchors.left:switchButtons.left
+            anchors.left: switchButtons.left
+            width: switchButtons.width
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 12
+
+            clip: true
             spacing: 8
+            model: shoppingModel
 
-            Repeater {
-                model: shoppingModel
+            ScrollBar.vertical: ScrollBar { policy: ScrollBar.AlwaysOff }
 
-                delegate: Rectangle {
-                    height: 75
-                    width: switchButtons.width
-                    radius: height/3
+            delegate: Rectangle {
+                height: 75
+                width: shoppingList.width
+                radius: height/3
+                border.width: 1
+                border.color: "#E0E0E0"
+
+                Rectangle{
+                    id:circle
+                    radius:height/2
+                    anchors.left:parent.left
+                    anchors.leftMargin: 20
+                    anchors.verticalCenter:  parent.verticalCenter
+                    height:parent.height/3
+                    width:height
+                    color:"transparent"
                     border.width: 1
-                    border.color: "#E0E0E0"
+                    border.color: "gray"
+                    visible:true
+                }
 
-                    Rectangle{
-                        id:circle
-                        radius:height/2
-                        anchors.left:parent.left
-                        anchors.leftMargin: 20
-                        anchors.verticalCenter:  parent.verticalCenter
-                        height:parent.height/3
-                        width:height
-                        color:"transparent"
-                        border.width: 1
-                        border.color: "gray"
-                        visible:true
-                    }
+                Label{
+                    text: model.name
+                    font.bold: true
+                    font.pointSize: 14
+                    anchors.left: circle.left
+                    anchors.leftMargin: circle.width+12
+                    anchors.verticalCenter: circle.top
+                }
 
-                    Label{
-                        text: model.name
-                        font.bold: true
-                        font.pointSize: 14
-                        anchors.left: circle.left
-                        anchors.leftMargin: circle.width+12
-                        anchors.verticalCenter: circle.top
-                    }
+                Label{
+                    id: infoLine
+                    property string categoryName: "Uncategorized"
 
-                    Label{
-                        id: infoLine
-                        property string categoryName: "Uncategorized"
+                    text: categoryName + " • " + model.need + " " + model.unit
+                    color:"black"
+                    font.pointSize: 10
+                    anchors.left: circle.left
+                    anchors.leftMargin: circle.width+12
+                    anchors.verticalCenter: circle.bottom
 
-                        text: categoryName + " • " + model.need + " " + model.unit
-                        color:"black"
-                        font.pointSize: 10
-                        anchors.left: circle.left
-                        anchors.leftMargin: circle.width+12
-                        anchors.verticalCenter: circle.bottom
-
-                        Component.onCompleted: {
-                            Api.ApiClient.getCategoryName(model.categoryId)
-                                .then(function(n) { infoLine.categoryName = n })
-                                .catch(function() { infoLine.categoryName = "Uncategorized" })
-                        }
+                    Component.onCompleted: {
+                        Api.ApiClient.getCategoryName(model.categoryId)
+                            .then(function(n) { infoLine.categoryName = n })
+                            .catch(function() { infoLine.categoryName = "Uncategorized" })
                     }
                 }
             }

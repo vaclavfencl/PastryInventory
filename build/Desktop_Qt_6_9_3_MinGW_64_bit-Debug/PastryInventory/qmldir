@@ -1,0 +1,16 @@
+module PastryInventory
+typeinfo appPastryInventory.qmltypes
+prefer :/qt/qml/PastryInventory/
+Main 1.0 Main.qml
+Footer 1.0 Footer.qml
+HomePage 1.0 HomePage.qml
+InventoryPage 1.0 InventoryPage.qml
+ShoppingPage 1.0 ShoppingPage.qml
+SettingsPage 1.0 SettingsPage.qml
+AddItemPopup 1.0 AddItemPopup.qml
+Config 1.0 Config.js
+ApiClient 1.0 ApiClient.js
+HouseholdList 1.0 HouseholdList.qml
+ItemListModel 1.0 ItemListModel.qml
+depends QtQuick
+
